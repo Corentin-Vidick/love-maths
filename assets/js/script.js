@@ -13,6 +13,11 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
     }
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter"){
+             checkAnswer();
+        }
+    })                              // Listens for "Enter" key, if pressed launches "checkAnswer()"
     runGame("addition");
 })
 
@@ -22,6 +27,9 @@ document.addEventListener("DOMContentLoaded", function() {
  * (this comment will appear when hovering over function name anywhere in code)
  */
 function runGame (gameType) {
+
+    document.getElementById("answer-box").value = "";   // Clears "answer-box" from previous answer
+    document.getElementById("answer-box").focus();      // Places cursor in "answer-box"
 
     // Creates two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
@@ -35,7 +43,7 @@ function runGame (gameType) {
         displaySubtractQuestion(num1,num2);
     } else {
         alert(`Unknown game type: ${gameType}`);
-        throw `Unknown game type: ${gameType}. Aborting!`; // Stops game from running and print in console for debugging
+        throw `Unknown game type: ${gameType}. Aborting!`;   // Stops game from running and print in console for debugging
     }
 }
 
